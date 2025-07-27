@@ -5,7 +5,7 @@ const Login = lazy(()=>import("../../components/auth/login"))
 
 function LoginPage() {
   return ( 
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader force={true}/>}>
       <Login/>
     </Suspense>
    );

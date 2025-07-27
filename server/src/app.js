@@ -16,8 +16,9 @@ connectToDb();
 app.use(express.json({limit: "10kb"}));
 app.use(express.urlencoded({extended: true}))
 
+
 app.use(cors({
-  orgin: "http://localhost:4000",
+  origin: "http://localhost:4000",
   methods: ["GET", "POST", "DELETE", "PUT"],
   credentials: true,
 }))

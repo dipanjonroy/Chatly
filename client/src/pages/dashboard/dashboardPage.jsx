@@ -10,7 +10,7 @@ const NoFriendSelect = lazy(() =>
 function DashboardPage() {
   const [showModal, setShowModal] = useState(false);
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader force={true} />}>
       <div className="w-screen h-screen bg-background text-white p-5">
         <div className="flex gap-4 h-full overflow-hidden">
           <Sidebar />

@@ -5,7 +5,7 @@ const ForgetPass = lazy(()=>import("../../components/auth/forgetPass"));
 
 function ForgetPassPage() {
   return ( 
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader force={true}/>}>
       <ForgetPass/>
     </Suspense>
    );

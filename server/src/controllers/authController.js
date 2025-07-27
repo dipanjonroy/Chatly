@@ -49,7 +49,7 @@ module.exports.loginUserController = async (req, res) => {
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
       secure: true,
-      sameSite: "Lax",
+      sameSite: "None",
     });
 
     res.status(200).json({

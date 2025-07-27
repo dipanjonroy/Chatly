@@ -4,7 +4,7 @@ const Register = lazy(() => import("../../components/auth/register"));
 
 function RegisterPage() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader force={true}/>}>
       <Register />
     </Suspense>
   );
