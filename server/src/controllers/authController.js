@@ -45,7 +45,7 @@ module.exports.loginUserController = async (req, res) => {
     const token = createToken({ userId }, process.env.JWT_ACCESS_KEY, "5m");
 
     res.cookie("accessToken", token, {
-      maxAge: 1000 * 60 * 5,
+      maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // works if env is set
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",

@@ -13,6 +13,10 @@ function Login() {
 
   const handleLogin = ()=>{
     dispatch(login(loginPayload))
+    .unwrap()
+    .then(()=>{
+      navigate("/")
+    })
   }
 
   return (
