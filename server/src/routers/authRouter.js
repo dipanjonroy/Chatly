@@ -4,6 +4,7 @@ const {
   registerUserController,
   loginUserController,
   logOutUserController,
+  authChekerController,
 } = require("../controllers/authController");
 const {
   userRegisterValidator,
@@ -24,5 +25,7 @@ router.post(
 router.post("/login", isLoggedOut, userLoginValidator, loginUserController);
 
 router.get("/logout", isLoggedIn, logOutUserController);
+
+router.get("/check-auth", isLoggedIn, authChekerController)
 
 module.exports = router;

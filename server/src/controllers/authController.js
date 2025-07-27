@@ -1,6 +1,7 @@
 const { sendOtp, registerUser, loginUser } = require("../services/authService");
 const ApiError = require("../utilities/error");
 const { createToken } = require("../utilities/createToken");
+const jwt = require("jsonwebtoken");
 
 module.exports.sendOtpController = async (req, res) => {
   try {
@@ -66,8 +67,20 @@ module.exports.logOutUserController = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Logged out successfully."
-    })
+      message: "Logged out successfully.",
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports.authChekerController = async (req, res) => {
+  try {
+    const userId = req.userId;
+    res.status(200).json({
+      success: true,
+      user: userId,
+    });
   } catch (error) {
     throw error;
   }
