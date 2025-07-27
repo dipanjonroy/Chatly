@@ -37,9 +37,8 @@ export const login = createAsyncThunk(
         return message;
       }
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Failed to log in."
-      );
+      
+      return rejectWithValue(error?.response?.data?.message);
     }
   }
 );
@@ -81,15 +80,16 @@ const authSlice = createSlice({
       })
 
       //Login
-      .addCase(login.fulfilled, (action) => {
+      .addCase(login.fulfilled, (state, action) => {
         toast.success(action.payload || "Logged in successfully");
       })
-      .addCase(login.rejected, (action) => {
-        toast.error(action.payload || "Failed to log in.");
+      .addCase(login.rejected, (state, action) => {
+       
+        toast.error(action.payload);
       });
   },
 });
 
-export const {addToLoginPayload, resetLoginPayload} = authSlice.actions;
+export const { addToLoginPayload, resetLoginPayload } = authSlice.actions;
 
 export default authSlice.reducer;

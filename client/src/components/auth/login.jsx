@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/ChatlyLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLoginPayload, login } from "../../redux/stateSlice/authSlice";
@@ -6,7 +6,10 @@ import { addToLoginPayload, login } from "../../redux/stateSlice/authSlice";
 function Login() {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const {loginPayload} = useSelector(store => store.auth);
+
 
   const handleLogin = ()=>{
     dispatch(login(loginPayload))
