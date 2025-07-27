@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const axiosInstance = axios.create({
-  baseURL: "https://real-time-chat-sand-three.vercel.app/api",
+  baseURL: "https://real-time-chat-beryl.vercel.app/api",
   withCredentials: true,
 });
 
