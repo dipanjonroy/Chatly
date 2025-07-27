@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { showLoader } from "./loaderSlice";
+import { hideLoader, showLoader } from "./loaderSlice";
 import axiosInstance from "../../lib/axiosInstance";
 import toast from "react-hot-toast";
 
@@ -20,6 +20,8 @@ export const checkAuth = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Access denied.");
+    } finally {
+      dispatch(hideLoader());
     }
   }
 );
@@ -37,8 +39,33 @@ export const login = createAsyncThunk(
         return message;
       }
     } catch (error) {
-      
       return rejectWithValue(error?.response?.data?.message);
+    } finally {
+      dispatch(hideLoader());
+    }
+  }
+);
+
+
+//Logout APi
+export const logout = createAsyncThunk(
+  "LogOut",
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(showLoader());
+
+      const response = await axiosInstance.get("/logout");
+      const { success, message } = response?.data;
+
+      if (success) {
+        return message;
+      } else {
+        return rejectWithValue("Failed to logout.");
+      }
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || "Failed to logout.");
+    } finally {
+      dispatch(hideLoader())
     }
   }
 );
@@ -84,7 +111,14 @@ const authSlice = createSlice({
         toast.success(action.payload || "Logged in successfully");
       })
       .addCase(login.rejected, (state, action) => {
-       
+        toast.error(action.payload);
+      })
+      
+      //Logout
+      .addCase(logout.fulfilled, (state, action) => {
+        toast.success(action.payload || "Logged out successfully");
+      })
+      .addCase(logout.rejected, (state, action) => {
         toast.error(action.payload);
       });
   },

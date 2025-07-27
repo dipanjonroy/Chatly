@@ -2,10 +2,16 @@ import { useRef, useState } from "react";
 import userImage from "../../assets/5.jpg";
 import { IoMdLogOut } from "react-icons/io";
 import { IoMdSend } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/stateSlice/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function ChatBox() {
   const [isActive, setIsActive] = useState(false);
   const [message, setMessage] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
  
 
   const textareaRef = useRef(null);
@@ -16,6 +22,14 @@ function ChatBox() {
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`; // Auto-grow
   };
+
+  const handleLogOut =()=>{
+    dispatch(logout())
+    .unwrap()
+    .then(()=>{
+      navigate("/login")
+    })
+  }
 
   return (
     <div className="flex-1 bg-[#252728] h-full px-2 rounded-md">
@@ -32,7 +46,7 @@ function ChatBox() {
               )}
             </div>
           </div>
-          <button className="p-2 rounded-full bg-gray-600 flex items-center justify-center cursor-pointer hover:bg-[#3B3D3E] shadow-xl transition duration-200">
+          <button className="p-2 rounded-full bg-gray-600 flex items-center justify-center cursor-pointer hover:bg-[#3B3D3E] shadow-xl transition duration-200" onClick={handleLogOut}>
             <IoMdLogOut size={22} />
           </button>
         </div>
