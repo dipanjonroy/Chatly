@@ -38,7 +38,7 @@ export const login = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue(
-        error.response?.data?.messge || "Failed to log in."
+        error.response?.data?.message || "Failed to log in."
       );
     }
   }
