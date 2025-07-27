@@ -47,8 +47,9 @@ module.exports.loginUserController = async (req, res) => {
     res.cookie("accessToken", token, {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // works if env is set
+      secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      path: "/",
     });
 
     res.status(200).json({
@@ -66,6 +67,7 @@ module.exports.logOutUserController = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      path: "/",
     });
 
     res.status(200).json({

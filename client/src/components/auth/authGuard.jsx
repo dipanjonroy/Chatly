@@ -13,12 +13,10 @@ function AuthGuard({ children }) {
   useEffect(() => {
     dispatch(checkAuth())
       .unwrap()
-      .then(() => {
-        console.log("Auth success");
+      .then((res) => {
         setIsAuth(true);
       })
       .catch(() => {
-        console.log("Auth failed");
         setIsAuth(false);
       })
       .finally(() => {
