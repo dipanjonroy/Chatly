@@ -1,32 +1,29 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/auth/loginPage";
-import RegisterPage from "./pages/auth/registerPage";
-import DashboardPage from "./pages/dashboard/dashboardPage";
-import ForgetPassPage from "./pages/auth/forgetPassPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import Loader from "./components/Loader/loader";
-import AuthGuard from "./components/auth/authGuard";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import DashboardPage from "./pages/DashboardPage";
+import Loader from "./components/ui/Loader/Loader";
+import ProtectedRoute from "./components/Guards/ProtectedRoutes";
+import PublicRoute from "./components/Guards/PublicRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <AuthGuard>
-              <DashboardPage />
-            </AuthGuard>
-          }
-        />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forget-password" element={<ForgetPassPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<DashboardPage />} />
+          </Route>
+
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<SignupPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
 
       <Loader />
-    </BrowserRouter>
+    </>
   );
 }
 

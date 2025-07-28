@@ -7,11 +7,13 @@
   --font-inter: "Inter", "sans-serif";    /*Chat */
   --font-roboto: "Roboto", "sans-serif"; /*Button */
 
-  --color-background: #111827;
-  --color-header: #1f2937;
+  --color-background: #19191A;
+  --color-primary: #242526;
+  --color-secondary: #333334;
   --color-text: #f9fafb;
+  --color-hover : #4F5151;
   --color-button : #2563eb;
-  --color-border: #111827;
+  
 }
 
 .scrollBar {

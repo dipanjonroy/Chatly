@@ -4,19 +4,18 @@ const initialState = {
   isLoading: false,
 };
 
-const loaderSlice = createSlice({
-  name: "Loader",
+const loadingSlice = createSlice({
+  name: "Loading",
   initialState,
   reducers: {
     showLoader: (state) => {
       state.isLoading = true;
     },
-
     hideLoader: (state) => {
       state.isLoading = false;
     },
   },
 });
 
-export const { showLoader, hideLoader } = loaderSlice.actions;
-export default loaderSlice.reducer;
+export const { showLoader, hideLoader } = loadingSlice.actions;
+export default loadingSlice.reducer;

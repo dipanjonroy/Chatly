@@ -1,6 +1,7 @@
 const { sendOtp, registerUser, loginUser } = require("../services/authService");
 const ApiError = require("../utilities/error");
 const { createToken } = require("../utilities/createToken");
+const jwt = require("jsonwebtoken");
 
 module.exports.sendOtpController = async (req, res) => {
   try {
@@ -81,7 +82,12 @@ module.exports.logOutUserController = async (req, res) => {
 
 module.exports.authChekerController = async (req, res) => {
   try {
-    const userId = req.userId;
+    const { accessToken } = req.cookies;
+    if (!accessToken) throw new ApiError(401, "Please login to access.");
+
+    const { userId } = jwt.decode(accessToken, process.env.JWT_ACCESS_KEY);
+    if (!userId) throw new ApiError(403, "Invalide access token.");
+
     res.status(200).json({
       success: true,
       user: userId,
