@@ -19,10 +19,19 @@ const schema = new Schema(
       required: true,
     },
 
-    isRead: {
-      type: Boolean,
-      default: false,
-    },
+    readBy: [
+      {
+        _id: false,
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        readAt:{
+          type: Date,
+          default: Date.now
+        }
+      },
+    ],
 
     timestamp: {
       type: Date,

@@ -51,3 +51,4 @@ module.exports.userLoginSchema = Joi.object({
     "string.empty": "Password can't be empty.",
   }),
 });
+

@@ -2,6 +2,7 @@ const { sendOtp, registerUser, loginUser } = require("../services/authService");
 const ApiError = require("../utilities/error");
 const { createToken } = require("../utilities/createToken");
 const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
 
 module.exports.sendOtpController = async (req, res) => {
   try {
@@ -88,9 +89,12 @@ module.exports.authChekerController = async (req, res) => {
     const { userId } = jwt.decode(accessToken, process.env.JWT_ACCESS_KEY);
     if (!userId) throw new ApiError(403, "Invalide access token.");
 
+    const user = await User.findById(userId).select("-__v -friendRequest -friends -sentFriendRequest");
+    if (!user) throw new ApiError(404, "User not found.");
+
     res.status(200).json({
       success: true,
-      user: userId,
+      user,
     });
   } catch (error) {
     throw error;

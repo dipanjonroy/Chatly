@@ -1,8 +1,10 @@
 import axios from "axios";
-import toast from "react-hot-toast";
+
+//const URL = "https://real-time-chat-beryl.vercel.app/api";
+const URL = "http://localhost:3001/api";
 
 const axiosInstance = axios.create({
-  baseURL: "https://real-time-chat-beryl.vercel.app/api",
+  baseURL: URL,
   withCredentials: true,
 });
 

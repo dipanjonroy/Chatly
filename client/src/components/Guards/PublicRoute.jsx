@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import Loader from "../ui/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { checkAuth } from "../../store/slices/authSlice";
+import { checkAuth } from "../../features/auth/checkAuthSlice";
 
 function PublicRoute() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function PublicRoute() {
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
-  const { isAuthenticated, loading } = useSelector((store) => store.auth);
+  const { isAuthenticated, loading } = useSelector((store) => store.checkAuth);
 
   if (loading) return <Loader />;
 

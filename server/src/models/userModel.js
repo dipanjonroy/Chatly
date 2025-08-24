@@ -32,7 +32,12 @@ const schema = new Schema({
   },
 
   profileImage: {
-    type: String,
+    url: {
+      type: String,
+    },
+    publicId: {
+      type: String,
+    },
   },
 
   socketId: {
@@ -48,6 +53,28 @@ const schema = new Schema({
     type: String,
     default: Date.now,
   },
+
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
+
+  friendRequest: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
+
+  sentFriendRequest: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ]
+
 });
 
 const User = model("User", schema);

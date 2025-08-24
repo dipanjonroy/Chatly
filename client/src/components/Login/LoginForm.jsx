@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../ui/Button";
 import FormInput from "../ui/FormInput";
 import FormLabel from "../ui/FormLabel";
-import { addToLoginPayload, login, resetLoginPayload } from "../../store/slices/authSlice";
 import { isEmail, isEmpty } from "../../helper/formHelper";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { addToLoginPayload, login, resetLoginPayload } from "../../features/auth/loginSlice";
 
 function LoginForm() {
-  const { loginPayload } = useSelector((store) => store.auth);
+  const { loginPayload } = useSelector((store) => store.login);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

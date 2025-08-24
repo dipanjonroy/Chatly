@@ -2,9 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
-import Loader from "./components/ui/Loader/Loader";
 import ProtectedRoute from "./components/Guards/ProtectedRoutes";
 import PublicRoute from "./components/Guards/PublicRoute";
+import NotificationToast from "./components/ui/NotificationToast";
 
 function App() {
   return (
@@ -21,8 +21,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-
-      <Loader />
+      <NotificationToast />
     </>
   );
 }

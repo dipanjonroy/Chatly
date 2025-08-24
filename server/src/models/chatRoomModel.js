@@ -11,12 +11,12 @@ const schema = new Schema({
 
   isGroup: {
     type: Boolean,
-    default: false
+    default: false,
   },
 
   lastMessage: {
     content: {
-      type: String
+      type: String,
     },
 
     sender: {
@@ -24,11 +24,25 @@ const schema = new Schema({
       ref: "User",
     },
 
+    readBy: [
+      {
+        _id: false,
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        readAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+
     timestamp: {
       type: Date,
-      default: Date.now
-    }
-  }
+      default: Date.now,
+    },
+  },
 });
 
 const ChatRoom = model("ChatRoom", schema);
