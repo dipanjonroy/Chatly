@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: ["http://localhost:4000","https://chatly-steel.vercel.app/"],
+    origin: ["http://localhost:4000","https://chatly-steel.vercel.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
