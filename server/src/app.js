@@ -18,9 +18,20 @@ connectToDb();
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 
+const allowOrigins = [
+  "http://localhost:4000",
+  "https://chatly-fgju.vercel.app",
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:4000","https://chatly-fgju.vercel.app/"],
+    origin: (origin, cb)=>{
+      if(!origin || origin.includes(origin)){
+        cb(null, true)
+      } else {
+        callback(new ApiError(501, "CORS not allowed"));
+      }
+    },
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
