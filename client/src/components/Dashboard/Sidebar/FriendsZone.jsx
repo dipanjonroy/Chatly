@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import profileImg from "../../../assets/5.jpg";
+import profileImg from "../../../assets/avatar.png";
 import IconButton from "../../ui/IconButton";
 import ProfileImage from "../../ui/ProfileImage";
 import { SlOptions } from "react-icons/sl";
@@ -64,7 +64,7 @@ function FriendZone() {
         >
           <div className="flex items-center gap-4">
             <ProfileImage
-              src={room?.friend?.profileImage}
+              src={room?.friend?.profileImage || profileImg}
               alt="Profile Image"
               width="w-12"
               height="h-12"
@@ -105,7 +105,7 @@ function FriendZone() {
               }`}
             >
               <ProfileImage
-                src={room?.friend?.profileImage}
+                src={room?.friend?.profileImage || profileImg}
                 alt="Profile Image"
                 width="w-4"
                 height="h-4"
