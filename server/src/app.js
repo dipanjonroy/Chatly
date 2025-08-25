@@ -26,7 +26,7 @@ const allowOrigins = [
 app.use(
   cors({
     origin: (origin, cb)=>{
-      if(!origin || origin.includes(origin)){
+      if(!origin || allowOrigins.includes(origin)){
         cb(null, true)
       } else {
         callback(new ApiError(501, "CORS not allowed"));
