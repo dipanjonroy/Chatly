@@ -1,5 +1,5 @@
 import ProfileImage from "../../ui/ProfileImage";
-import profileImg from "../../../assets/5.jpg";
+import profileImg from "../../../assets/avatar.png";
 import IconButton from "../../ui/IconButton";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,7 @@ function ChatArea() {
           {friendInfo && friendInfo?.name ? (
             <>
               <ProfileImage
-                src={friendInfo?.profileImage}
+                src={friendInfo?.profileImage || profileImg}
                 alt="Profile Image"
                 width="w-10"
                 height="h-10"

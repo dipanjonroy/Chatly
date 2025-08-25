@@ -1,5 +1,5 @@
 import ProfileImage from "../../ui/ProfileImage";
-import profileImg from "../../../assets/5.jpg";
+import profileImg from "../../../assets/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import socket from "../../../libs/socket";
@@ -103,7 +103,7 @@ function Chats() {
               {item.sender?._id !== user._id && (
                 <div className="flex items-center gap-2 mt-2">
                   <ProfileImage
-                    src={item?.sender?.profileImage?.url}
+                    src={item?.sender?.profileImage?.url || profileImg}
                     width="w-7"
                     height="h-7"
                   />
@@ -128,10 +128,10 @@ function Chats() {
                   >
                     {item.message}
                   </p>
-                  {item._id === lastMessageSeenByFriend._id && (
+                  {item?._id === lastMessageSeenByFriend?._id && (
                     <div className="absolute right-0 bottom-[-6px]">
                       <ProfileImage
-                        src={friendInfo?.profileImage}
+                        src={friendInfo?.profileImage || profileImg}
                         width="w-3"
                         height="h-3"
                       />
